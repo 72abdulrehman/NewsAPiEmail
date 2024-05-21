@@ -1,4 +1,5 @@
 import requests
+from send_email import send_email
 
 api_key = "f2e37f1122ba4e31815adafbc7c780f2"
 
@@ -9,4 +10,7 @@ content = request.json()
 
 body = ""
 for article in content["articles"]:
-    body = body + article["title"] + "\n" + article["description"] +2*"\n"
+    body = body + article["title"] + "\n" + str(article["description"]) + 2*"\n"
+    
+body = body.encode("utf-8") 
+send_email(message=body)
